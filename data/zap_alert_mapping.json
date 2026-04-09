@@ -1,0 +1,23 @@
+{
+  "SQL Injection": {"code": "SI", "verdict": "취약"},
+  "Cross Site Scripting": {"code": "XS", "verdict": "취약"},
+  "Reflected XSS": {"code": "XS", "verdict": "취약"},
+  "Stored XSS": {"code": "XS", "verdict": "취약"},
+  "OS Command Injection": {"code": "CI", "verdict": "취약"},
+  "Code Injection": {"code": "CI", "verdict": "취약"},
+  "LDAP Injection": {"code": "CI", "verdict": "취약"},
+  "Server Side Request Forgery": {"code": "SF", "verdict": "취약"},
+  "CSP: script-src unsafe-inline": {"code": "XS", "verdict": "주의"},
+  "CSP: script-src unsafe-eval": {"code": "XS", "verdict": "주의"},
+  "CSP: style-src unsafe-inline": {"code": "XS", "verdict": "주의"},
+  "Cross-Domain Misconfiguration": {"code": "CC", "verdict": "주의"},
+  "Strict-Transport-Security Header Not Set": {"code": "SN", "verdict": "주의"},
+  "X-Content-Type-Options Header Missing": {"code": "IL", "verdict": "주의"},
+  "X-Frame-Options Header Not Set": {"code": "CF", "verdict": "주의"},
+  "Directory Browsing": {"code": "DI", "verdict": "취약"},
+  "Application Error Disclosure": {"code": "EP", "verdict": "취약"},
+  "Information Disclosure": {"code": "IL", "verdict": "주의"},
+  "Cookie Without Secure Flag": {"code": "CC", "verdict": "주의"},
+  "Cookie Without HttpOnly Flag": {"code": "IS", "verdict": "주의"},
+  "Cookie No HttpOnly Flag": {"code": "IS", "verdict": "주의"}
+}

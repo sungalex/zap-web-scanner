@@ -1,0 +1,215 @@
+[
+  {
+    "code": "CI", "name": "코드 인젝션", "full_name": "코드 인젝션 (Code Injection)",
+    "importance": "상", "category": "입력값 검증",
+    "scan_method": "auto", "zap_coverage": "●",
+    "description": "웹 애플리케이션 내 다양한 인젝션 공격(LDAP, 운영체제 명령 실행, SSI, XPATH, XML, SSTI 인젝션 등)에 대해 외부 입력값이 쿼리나 명령어로 삽입되어 비인가된 접근이나 코드 실행의 가능 유무 점검",
+    "zap_alert_patterns": [
+      "OS Command Injection", "Remote OS Command Injection",
+      "LDAP Injection", "Server Side Include", "XPATH Injection",
+      "XML External Entity", "XXE", "SSTI", "Template Injection",
+      "Code Injection", "Remote Code Execution"
+    ],
+    "zap_cwe_ids": [78, 90, 97, 643, 611, 1336, 94]
+  },
+  {
+    "code": "SI", "name": "SQL 인젝션", "full_name": "SQL 인젝션 (SQL Injection)",
+    "importance": "상", "category": "입력값 검증",
+    "scan_method": "auto", "zap_coverage": "●",
+    "description": "웹 애플리케이션 내 입력값이 SQL 쿼리에 삽입되어 비인가된 데이터베이스 접근과 조작 가능 여부 점검",
+    "zap_alert_patterns": [
+      "SQL Injection", "Blind SQL", "Time Based SQL", "Boolean Based SQL",
+      "Error Based SQL", "UNION SQL"
+    ],
+    "zap_cwe_ids": [89]
+  },
+  {
+    "code": "DI", "name": "디렉터리 인덱싱", "full_name": "디렉터리 인덱싱",
+    "importance": "상", "category": "정보누출",
+    "scan_method": "manual", "zap_coverage": "○",
+    "description": "웹 애플리케이션 서버 내 디렉터리 인덱싱 취약점 존재 여부 점검",
+    "zap_alert_patterns": ["Directory Browsing", "Directory Listing"],
+    "zap_cwe_ids": [548],
+    "manual_check": {
+      "paths": ["/_next/", "/_next/static/", "/images/", "/fonts/", "/api/", "/uploads/", "/public/"],
+      "detect_patterns": ["Index of", "Directory listing", "Parent Directory"]
+    }
+  },
+  {
+    "code": "EP", "name": "에러 페이지 적용 미흡", "full_name": "에러 페이지 적용 미흡",
+    "importance": "상", "category": "정보누출",
+    "scan_method": "manual", "zap_coverage": "○",
+    "description": "웹 애플리케이션 에러 페이지 내 불필요한 정보 노출 여부 점검",
+    "zap_alert_patterns": ["Application Error Disclosure"],
+    "zap_cwe_ids": [200, 209],
+    "manual_check": {
+      "paths": ["/nonexistent-page-12345", "/../../etc/passwd",
+                "/<script>alert(1)</script>", "/login?id=1' OR '1'='1"],
+      "detect_patterns": ["Error:", "at ", "stack", "Traceback", "node_modules"]
+    }
+  },
+  {
+    "code": "IL", "name": "정보 누출", "full_name": "정보 누출",
+    "importance": "상", "category": "정보누출",
+    "scan_method": "mixed", "zap_coverage": "◐",
+    "description": "웹 애플리케이션 내 중요 정보 및 불필요한 정보의 노출 여부 점검",
+    "zap_alert_patterns": [
+      "Information Disclosure", "Private IP Disclosure",
+      "Server Leaks Information", "X-Content-Type-Options",
+      "Tech Detected", "Timestamp Disclosure"
+    ],
+    "zap_cwe_ids": [200]
+  },
+  {
+    "code": "XS", "name": "크로스사이트 스크립팅", "full_name": "크로스사이트 스크립트",
+    "importance": "상", "category": "입력값 검증",
+    "scan_method": "mixed", "zap_coverage": "◐",
+    "description": "웹 애플리케이션 내 악성 스크립트가 다른 사용자의 브라우저에서 실행되는 취약점 존재 여부 점검",
+    "zap_alert_patterns": [
+      "Cross Site Scripting", "XSS", "Reflected XSS", "Stored XSS", "DOM XSS",
+      "CSP: script-src unsafe-inline", "CSP: script-src unsafe-eval",
+      "CSP: style-src unsafe-inline"
+    ],
+    "zap_cwe_ids": [79, 693]
+  },
+  {
+    "code": "CF", "name": "크로스사이트 요청 위조", "full_name": "크로스사이트 요청 위조(CSRF)",
+    "importance": "상", "category": "입력값 검증",
+    "scan_method": "manual", "zap_coverage": "○",
+    "description": "웹 애플리케이션 내 사용자의 인증 세션을 악용하여 의도하지 않은 위조 요청 가능 여부 점검",
+    "zap_alert_patterns": [
+      "Cross-Site Request Forgery", "CSRF", "Anti-CSRF",
+      "X-Frame-Options"
+    ],
+    "zap_cwe_ids": [352]
+  },
+  {
+    "code": "SF", "name": "서버사이드 요청 위조", "full_name": "서버사이드 요청 위조(SSRF)",
+    "importance": "상", "category": "입력값 검증",
+    "scan_method": "auto", "zap_coverage": "●",
+    "description": "입력값을 통해 외부에서 직접적인 접근이 제한된 내부 서버 자원에 접근하여 악의적인 요청을 처리하거나 중요 정보의 유출 여부 점검",
+    "zap_alert_patterns": ["Server Side Request Forgery", "SSRF"],
+    "zap_cwe_ids": [918]
+  },
+  {
+    "code": "BF", "name": "약한 비밀번호 정책", "full_name": "약한 비밀번호 정책",
+    "importance": "상", "category": "인증",
+    "scan_method": "manual", "zap_coverage": "○",
+    "description": "회원가입 시 비밀번호 복잡도 정책의 적절성 점검",
+    "zap_alert_patterns": ["Weak Authentication", "Weak Password"],
+    "zap_cwe_ids": [521]
+  },
+  {
+    "code": "IA", "name": "불충분한 인증 절차", "full_name": "불충분한 인증 절차",
+    "importance": "상", "category": "인증",
+    "scan_method": "manual", "zap_coverage": "○",
+    "description": "인증 절차의 적절성(CAPTCHA, MFA 등) 점검",
+    "zap_alert_patterns": ["Authentication"],
+    "zap_cwe_ids": [287]
+  },
+  {
+    "code": "IN", "name": "불충분한 권한 검증", "full_name": "불충분한 권한 검증",
+    "importance": "상", "category": "인가",
+    "scan_method": "manual", "zap_coverage": "○",
+    "description": "비인증 상태와 인증 상태의 접근 차이 및 수평/수직 권한 검증 점검",
+    "zap_alert_patterns": ["Access Control", "Authorization", "IDOR"],
+    "zap_cwe_ids": [285]
+  },
+  {
+    "code": "PR", "name": "취약한 비밀번호 복구", "full_name": "취약한 비밀번호 복구 절차",
+    "importance": "상", "category": "인증",
+    "scan_method": "manual", "zap_coverage": "○",
+    "description": "비밀번호 복구 프로세스의 본인 인증 강도 점검",
+    "zap_alert_patterns": ["Password Recovery"],
+    "zap_cwe_ids": [640]
+  },
+  {
+    "code": "PV", "name": "프로세스 검증 누락", "full_name": "프로세스 검증 누락",
+    "importance": "상", "category": "프로세스검증",
+    "scan_method": "manual", "zap_coverage": "○",
+    "description": "다단계 프로세스의 순서 우회 가능 여부 점검",
+    "zap_alert_patterns": ["Process Validation"],
+    "zap_cwe_ids": [841]
+  },
+  {
+    "code": "FU", "name": "악성 파일 업로드", "full_name": "악성 파일 업로드",
+    "importance": "상", "category": "입력값 검증",
+    "scan_method": "manual", "zap_coverage": "○",
+    "description": "파일 업로드 기능에서 악성 파일 업로드 가능 여부 점검",
+    "zap_alert_patterns": ["File Upload"],
+    "zap_cwe_ids": [434]
+  },
+  {
+    "code": "FD", "name": "파일 다운로드", "full_name": "파일 다운로드",
+    "importance": "상", "category": "입력값 검증",
+    "scan_method": "manual", "zap_coverage": "○",
+    "description": "파일 다운로드 경로 조작을 통한 비인가 파일 접근 가능 여부 점검",
+    "zap_alert_patterns": ["Path Traversal", "Directory Traversal"],
+    "zap_cwe_ids": [22]
+  },
+  {
+    "code": "IS", "name": "불충분한 세션 관리", "full_name": "불충분한 세션 관리",
+    "importance": "상", "category": "세션관리",
+    "scan_method": "manual", "zap_coverage": "○",
+    "description": "세션 토큰 저장 방식(쿠키/localStorage), HttpOnly/Secure 플래그 적용 여부 점검",
+    "zap_alert_patterns": [
+      "Session Management", "Session Fixation", "Session ID",
+      "Cookie Without HttpOnly", "Cookie Without Secure"
+    ],
+    "zap_cwe_ids": [384, 613, 614]
+  },
+  {
+    "code": "SN", "name": "데이터 평문 전송", "full_name": "데이터 평문 전송",
+    "importance": "상", "category": "암호화",
+    "scan_method": "mixed", "zap_coverage": "◐",
+    "description": "HTTPS 적용 여부, HSTS 설정 여부 등 전송 구간 보안 점검",
+    "zap_alert_patterns": [
+      "Strict-Transport-Security", "HSTS", "Insecure Transport",
+      "SSL", "TLS", "Mixed Content"
+    ],
+    "zap_cwe_ids": [319, 523]
+  },
+  {
+    "code": "CC", "name": "쿠키 변조", "full_name": "쿠키 변조",
+    "importance": "상", "category": "세션관리",
+    "scan_method": "mixed", "zap_coverage": "◐",
+    "description": "쿠키 보안 속성(HttpOnly, Secure, SameSite) 및 CORS 설정 점검",
+    "zap_alert_patterns": [
+      "Cookie", "HttpOnly", "Secure Flag", "SameSite",
+      "Cross-Domain Misconfiguration", "CORS"
+    ],
+    "zap_cwe_ids": [565, 264, 942]
+  },
+  {
+    "code": "AE", "name": "관리자 페이지 노출", "full_name": "관리자 페이지 노출",
+    "importance": "상", "category": "정보누출",
+    "scan_method": "manual", "zap_coverage": "○",
+    "description": "관리자 페이지 접근 가능 여부 점검",
+    "zap_alert_patterns": ["Admin Page", "Hidden File"],
+    "zap_cwe_ids": [200],
+    "manual_check": {
+      "paths": ["/admin", "/administrator", "/admin/login", "/manage",
+                "/manager", "/cms", "/wp-admin", "/dashboard",
+                "/console", "/backoffice", "/phpmyadmin"]
+    }
+  },
+  {
+    "code": "AU", "name": "자동화 공격", "full_name": "자동화 공격",
+    "importance": "상", "category": "자동화공격",
+    "scan_method": "manual", "zap_coverage": "○",
+    "description": "CAPTCHA 적용 여부, 로그인 시도 제한 등 자동화 공격 방어 점검",
+    "zap_alert_patterns": ["Brute Force", "CAPTCHA"],
+    "zap_cwe_ids": [799, 307]
+  },
+  {
+    "code": "WM", "name": "불필요한 Method 악용", "full_name": "불필요한 Method 악용",
+    "importance": "상", "category": "설정",
+    "scan_method": "manual", "zap_coverage": "○",
+    "description": "불필요한 HTTP Method(OPTIONS, PUT, DELETE, PATCH) 허용 여부 점검",
+    "zap_alert_patterns": ["HTTP Method"],
+    "zap_cwe_ids": [749],
+    "manual_check": {
+      "methods": ["OPTIONS", "PUT", "DELETE", "PATCH", "HEAD"]
+    }
+  }
+]

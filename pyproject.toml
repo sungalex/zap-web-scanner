@@ -1,0 +1,23 @@
+[project]
+name = "zap-web-scanner"
+version = "2.0.0"
+description = "주요정보통신기반시설 웹 취약점 자동 진단 시스템 (KISA 2026 가이드 21개 항목)"
+requires-python = ">=3.9"
+dependencies = [
+    "requests",
+    "python-dotenv",
+    "python-docx",
+]
+
+[project.scripts]
+web-scanner = "scanner.orchestrator:main"
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["scanner*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.json", "*.txt"]

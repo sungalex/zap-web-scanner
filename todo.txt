@@ -6,7 +6,3 @@
 ## 고도화 수정사항
 - logging_setup: 로그는 풍부하게, console print는 진행 단계 확인용
 - docx 보고서 작성: 테이블 속성 설정 기능(raw XML 조작 기능) 라이브러리 작성. 보고서 종합의견 제목 스타일, 머리글 스타일 적용
-
-- 보고서 생성 폴더 변경: docs -> reports
-- README, Claude 제외한 문서는 docs 폴더로 이동
-- .gitignore 수정: docs 제거, reports 추가

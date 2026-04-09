@@ -42,7 +42,7 @@ Two external services must be running:
 
 Python dependencies: `requests`, `python-dotenv`, `python-docx`.
 
-For air-gapped environments, see `docs/airgap-setup.md`.
+For air-gapped environments, see [docs/airgap-setup.md](docs/airgap-setup.md).
 
 ## Environment Variables
 

@@ -28,7 +28,7 @@ class ScanOrchestrator:
 
         # 출력 폴더
         os.makedirs("logs", exist_ok=True)
-        os.makedirs("docs", exist_ok=True)
+        os.makedirs("reports", exist_ok=True)
         self.zap_log_dir = os.path.join("logs", "zap")
         os.makedirs(self.zap_log_dir, exist_ok=True)
 
@@ -379,7 +379,7 @@ class ScanOrchestrator:
         scan_meta = {"duration": f"{int(elapsed // 60)}분 {int(elapsed % 60)}초"}
 
         # JSON 저장
-        json_path = os.path.join("docs", f"vuln_report_{self.timestamp}.json")
+        json_path = os.path.join("reports", f"vuln_report_{self.timestamp}.json")
         json_data = generate_json_report(
             self.findings, self.config.target_url, self.exec_summary,
             scan_meta, self.config.ollama_model)
@@ -388,7 +388,7 @@ class ScanOrchestrator:
         logger.info("JSON 보고서 저장: %s", json_path)
 
         # DOCX 저장
-        docx_path = os.path.join("docs", f"vuln_report_{self.timestamp}.docx")
+        docx_path = os.path.join("reports", f"vuln_report_{self.timestamp}.docx")
         print(f"\n  DOCX 생성 중...")
         try:
             generate_docx_report(

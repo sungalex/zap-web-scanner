@@ -54,7 +54,7 @@ python web-scanner.py https://대상URL --passive-timeout 180 --ollama-timeout 1
 | **ZAP 리소스 제어** | `--scan-threads`, `--request-delay` 로 메모리 사용량 및 타겟 부하 제어 |
 | **자동 재시도** | ZAP API, Ollama, 수동 점검 HTTP 요청 실패 시 지수 백오프 자동 재시도 |
 | **ZAP 결과 보존** | Spider URL, 경고 원시 데이터, 수동 점검 결과를 `logs/zap/`에 JSON 저장 |
-| **에어갭 환경 지원** | 인터넷 차단 환경 설치 가이드 제공 ([airgap-setup.md](airgap-setup.md)) |
+| **에어갭 환경 지원** | 인터넷 차단 환경 설치 가이드 제공 ([airgap-setup.md](docs/airgap-setup.md)) |
 
 ## 패키지 구조
 
@@ -115,7 +115,7 @@ prompts/
 ## 출력 보고서
 
 ```
-docs/
+reports/
   vuln_report_YYYYMMDD_HHMMSS.docx       # 가이드 양식 DOCX
   vuln_report_YYYYMMDD_HHMMSS.json       # 기계 판독용 JSON
 logs/
@@ -184,7 +184,7 @@ OLLAMA_MODEL=gemma4:e4b
 
 > CLI 인자(`--zap-url`, `--model` 등)가 `.env` 값보다 우선합니다.
 
-에어갭(인터넷 차단) 환경 설치는 [airgap-setup.md](airgap-setup.md) 참조.
+에어갭(인터넷 차단) 환경 설치는 [airgap-setup.md](docs/airgap-setup.md) 참조.
 
 ### 환경 B: Claude Desktop + ZAP MCP (대화형)
 
@@ -196,8 +196,8 @@ OLLAMA_MODEL=gemma4:e4b
 | **OWASP ZAP** | 프록시/스캐너 (port 8080) | API 키 설정 필요 |
 | **.NET SDK 8.0+** | ZAP MCP 서버 빌드 | `dotnet tool install -g dotnet-zap-mcp` |
 
-- ZAP MCP 서버 설정: [Claude-ZAP_MCP_설정_가이드.md](Claude-ZAP_MCP_설정_가이드.md)
-- 점검 수행 플레이북: [Claude-ZAP_MCP_Playbook.md](Claude-ZAP_MCP_Playbook.md)
+- ZAP MCP 서버 설정: [Claude-ZAP_MCP_설정_가이드.md](docs/Claude-ZAP_MCP_설정_가이드.md)
+- 점검 수행 플레이북: [Claude-ZAP_MCP_Playbook.md](docs/Claude-ZAP_MCP_Playbook.md)
 
 ## 주의사항
 

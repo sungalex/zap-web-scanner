@@ -45,7 +45,7 @@ def _run_check(zap_url, zap_key, ollama_url, model):
         ok = False
 
     # 출력 디렉터리
-    for d in ["logs", "docs"]:
+    for d in ["logs", "reports"]:
         os.makedirs(d, exist_ok=True)
         test_path = os.path.join(d, ".write_test")
         try:

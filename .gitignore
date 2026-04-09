@@ -9,7 +9,7 @@ venv/
 .env
 
 # Output
-docs/
+reports/
 logs/
 
 # IDE

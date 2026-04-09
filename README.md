@@ -31,7 +31,7 @@ python web-scanner.py https://대상URL \
 python web-scanner.py --check
 
 # 메모리 절약 모드 (ZAP 스레드 제한 + 요청 딜레이)
-python web-scanner.py https://대상URL --scan-threads 1 --request-delay 500
+python web-scanner.py https://대상URL --scan-threads 1 --request-delay 100
 
 # Active Scan 건너뛰기 (빠른 점검)
 python web-scanner.py https://대상URL --skip-active
